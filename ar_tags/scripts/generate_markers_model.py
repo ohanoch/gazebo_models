@@ -29,6 +29,13 @@ if not os.path.isdir(args.input):
 if args.verbose:
     print(args.input)
 
+# Copy marker0 directory into gazebo model directory
+cp_marker0_cmd = "cp -r " + args.input[0:args.input.rfind("images")] + "model/marker0" + \
+             " " + os.path.join(args.gazebodir, "marker0")
+if args.verbose:
+    print(cp_marker0_cmd)
+os.system(cp_marker0_cmd)
+
 file_list = sorted(os.listdir(args.input))
 for image_file in file_list:
     if not image_file.endswith('.png'):
